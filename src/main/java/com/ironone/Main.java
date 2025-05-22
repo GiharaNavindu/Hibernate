@@ -2,6 +2,7 @@ package com.ironone;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -17,10 +18,14 @@ public class Main {
 
         //using the hibernate
         Configuration config =  new Configuration();
-        config.configure();
+        config.addAnnotatedClass(com.ironone.Alien.class);
+        config.configure("hibernate.cfg.xml");
+//        config.configure();
         SessionFactory factory = config.buildSessionFactory();
         Session session = factory.openSession();//this will open a session
+        Transaction transaction = session.beginTransaction();
         session.persist(a1);
+        transaction.commit();
 
 
     }

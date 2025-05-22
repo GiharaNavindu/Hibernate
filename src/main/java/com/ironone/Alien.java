@@ -1,6 +1,12 @@
 package com.ironone;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Alien {
+    @Id
     private int eid;
     private String ename;
     private String stack;
