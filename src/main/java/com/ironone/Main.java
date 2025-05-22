@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        Alien a1 = new Alien();
-        a1.setEid(1);
-        a1.setEname("Alien1");
-        a1.setStack("Java");
+//        Alien a1 = new Alien();
+//        a1.setEid(1);
+//        a1.setEname("Alien1");
+//        a1.setStack("Java");
 
         //using the hibernate
 //        Configuration config =  new Configuration();
@@ -26,8 +26,11 @@ public class Main {
         SessionFactory factory = new Configuration().addAnnotatedClass(com.ironone.Alien.class).configure("hibernate.cfg.xml").buildSessionFactory();
         Session session = factory.openSession();//this will open a session
         Transaction transaction = session.beginTransaction();
+        Alien a1 = session.get(Alien.class,1);//eager fetching
+        Alien a2 = session.byId(Alien.class).load(1);//Lazy fetching
         session.persist(a1);
         transaction.commit();
+        System.out.printf(a1.getEname());
         session.close();
         factory.close();
 
