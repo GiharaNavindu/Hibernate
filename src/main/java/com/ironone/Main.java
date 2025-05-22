@@ -26,7 +26,8 @@ public class Main {
         Transaction transaction = session.beginTransaction();
         session.persist(a1);
         transaction.commit();
-        session.close();g
+        session.close();
+        factory.close();
 
 
     }
