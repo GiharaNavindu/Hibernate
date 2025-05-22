@@ -17,11 +17,13 @@ public class Main {
         a1.setStack("Java");
 
         //using the hibernate
-        Configuration config =  new Configuration();
-        config.addAnnotatedClass(com.ironone.Alien.class);
-        config.configure("hibernate.cfg.xml");
-//        config.configure();
-        SessionFactory factory = config.buildSessionFactory();
+//        Configuration config =  new Configuration();
+//        config.addAnnotatedClass(com.ironone.Alien.class);
+//        config.configure("hibernate.cfg.xml");
+////        config.configure();
+
+
+        SessionFactory factory = new Configuration().addAnnotatedClass(com.ironone.Alien.class).configure("hibernate.cfg.xml").buildSessionFactory();
         Session session = factory.openSession();//this will open a session
         Transaction transaction = session.beginTransaction();
         session.persist(a1);
